@@ -1,0 +1,33 @@
+//Created by cranabahu on 11/30/14.
+
+template(name="viewTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header New Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  button.btn.btn-primary.btn-circle(type="")
+                     i.fa.fa-list
+                  | Task Details
+               // /.panel-heading
+               .panel-body
+                  .table-responsive
+                     table.table.table-striped.table-bordered.table-hover
+                        thead
+                           tr
+                              th Task Id
+                              th Cusomer
+                              td Serverity
+                              th Repair Part
+                              th Due Date
+                        tbody
+                           each newTask
+                              tr.odd.gradeX
+                                 td #{id}
+                                 td #{customer}
+                                 td #{serverity}
+                                 td #{repairPart}
+                                 td #{dueDate}

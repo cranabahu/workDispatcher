@@ -1,0 +1,38 @@
+//Created by cranabahu on 11/28/14.
+template(name="newTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header New Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  | Create
+               .panel-body
+                  .row
+                     .col-lg-6
+                        form
+                           .form-group
+                              //label Task Id
+                              //input.form-control(type="text", name="taskId")
+                              label Customer
+                              input.form-control(type="text", name="customer")
+                              label Address
+                              textarea.form-control(rows="3", name="custAddr")
+                              label Contact No
+                              input.form-control(type="text", name="custContact")
+                              label Repair part
+                              input.form-control(type="text", name="repairPart")
+                              label Serverity
+                              select.form-control(name="serverity")
+                                 option Normal
+                                 option High
+                                 option Critical
+                              label Due Date
+                              input.form-control(type="date", name='taskDuedate')
+                              label Task Description
+                              textarea.form-control(rows="3", name="taskDesc")
+                           button.btn.btn-default(type="submit") Save
+                           button.btn.btn-default(type="reset") Reset
+                        p.text-success #{taskInfo}

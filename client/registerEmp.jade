@@ -1,0 +1,57 @@
+//  Created by cranabahu on 11/21/14.
+
+template(name="registerEmp")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Register Employees
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  button.btn.btn-success.btn-circle(type="")
+                     i.fa.fa-link
+                  | Register
+               .panel-body
+                  .row
+                     .col-lg-6
+                        form
+                           .form-group
+                              label Name
+                              input.form-control(type="text", name="empName")
+                              label Age
+                              input.form-control(type="number", name="empAge")
+                              .checkbox
+                                 label
+                                    input(type="checkbox", class="cbMale")
+                                    | Male
+                                 label
+                                    input(type="checkbox", class="cbFemale")
+                                    | Female
+                           button.btn.btn-success(type="submit") Save
+                           button.btn.btn-default(type="reset") Reset
+      div(name="empDetail")
+         .row
+            .col-lg-12
+               .panel.panel-default
+                  .panel-heading
+                     button.btn.btn-primary.btn-circle(type="")
+                        i.fa.fa-list
+                     | Employee Details
+                  // /.panel-heading
+                  .panel-body
+                     .table-responsive
+                        table.table.table-striped.table-bordered.table-hover
+                           thead
+                              tr
+                                 th Emp NO
+                                 th Name
+                                 td Age
+                                 th Gender
+                           tbody
+                              each employee
+                                 tr.odd.gradeX
+                                    td #{empNo}
+                                    td #{name}
+                                    td #{age}
+                                    td #{gender}
