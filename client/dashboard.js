@@ -7,3 +7,7 @@ Template.dashboard.helpers({
        return TaskList.find().count();
    }
 });
+
+Template.dashbord.events({
+
+});
