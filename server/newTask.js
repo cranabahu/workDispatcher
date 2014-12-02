@@ -11,6 +11,7 @@ Meteor.methods({
         var userIdvar = Meteor.userId();
         var enteredDateVar = new Date();
         var assigneeVar = "";
+        var estimationVar = 0;
         var taskStatus = "New";
         var taskId   = 10001;
         if (TaskList.find().count() !==  0) {
@@ -24,11 +25,12 @@ Meteor.methods({
             custAddr: custAddrVar,
             custContact: custContactVar,
             repairPart: repairPartVar,
-            desc    : taskDescVar,
+            desc: taskDescVar,
             serverity: serverityVar,
-            status : taskStatus,
+            status: taskStatus,
             assignee: assigneeVar,
-            dueDate : taskDuedateVar,
+            dueDate: taskDuedateVar,
+            estimation: estimationVar,
             entryDate: enteredDateVar,
             createdBy: userIdvar
         });
