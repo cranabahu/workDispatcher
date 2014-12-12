@@ -19,9 +19,10 @@ template(name="newTask")
                               label Customer
                               input.form-control(type="text", name="customer")
                               label Address
-                              textarea.form-control(rows="3", name="custAddr")
+                              textarea.form-control(rows="3", name="custAddr", id="addr")
                               label Contact No
-                              input.form-control(type="text", name="custContact")
+                              span.custContact
+                                 input.form-control(type="text", name="custContact")
                               label Repair part
                               input.form-control(type="text", name="repairPart")
                               label Serverity
@@ -36,3 +37,6 @@ template(name="newTask")
                            button.btn.btn-default(type="submit") Save
                            button.btn.btn-default(type="reset") Reset
                         p.text-success #{taskInfo}
+                     .row
+                        .col-lg-6
+                           #map-canvas
