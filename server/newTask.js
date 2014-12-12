@@ -7,7 +7,7 @@ Meteor.publish('theTask',function(){
 });
 
 Meteor.methods({
-    'newTask':function(customerVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar){
+    'newTask':function(customerVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
         var userIdvar = Meteor.userId();
         var enteredDateVar = new Date();
         var assigneeVar = "";
@@ -23,6 +23,8 @@ Meteor.methods({
             id: taskId,
             customer: customerVar,
             custAddr: custAddrVar,
+            lat: custLat,
+            lng: custLng,
             custContact: custContactVar,
             repairPart: repairPartVar,
             desc: taskDescVar,
