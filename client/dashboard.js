@@ -8,6 +8,7 @@ Template.dashboard.helpers({
    }
 });
 
+/*
 Template.dashbord.events({
 
-});
+});*/
