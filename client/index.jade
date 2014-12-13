@@ -125,7 +125,7 @@ template(name="taskDropdownElement")
           strong #{task}
           span.pull-right.text-muted #{percentComplete}% Complete
         .progress.progress-striped.active
-          .progress-bar(class=progressBarType role="progressbar", aria-valuenow=percentComplete, aria-valuemin="0", aria-valuemax="100", style=style)
+          .progress-bar.progressBarType(role="progressbar", aria-valuenow=percentComplete, aria-valuemin="0", aria-valuemax="100", style=style)
             span.sr-only #{percentComplete}% Complete (#{type})
   li.divider
 
@@ -133,7 +133,7 @@ template(name="notificationsElement")
   li
     a(href=href)
       div
-        i.fa.fa-fw(class=icon)
+        i.fa.fa-fw.icon
         | #{text}
         span.pull-right.text-muted.small #{when}
   li.divider
