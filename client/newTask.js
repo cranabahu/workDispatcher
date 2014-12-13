@@ -6,8 +6,7 @@ Meteor.subscribe('theTask');
 
 Template.newTask.helpers({
     'taskInfo':function(){
-        var info_ = Session.get('taskInfo');
-        return info_;
+        return Session.get('taskInfo');
     }
 });
 

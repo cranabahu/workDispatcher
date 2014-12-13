@@ -9,7 +9,7 @@ Meteor.publish('theTask',function(){
 Meteor.methods({
     'newTask':function(customerVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
         var userIdvar = Meteor.userId();
-        var enteredDateVar = new Date();
+        var enteredDateVar = moment(new Date()).format('YYYY-MM-DD');
         var assigneeVar = "";
         var estimationVar = 0;
         var taskStatus = "New";

@@ -1,0 +1,66 @@
+//Created by cranabahu on 12/12/14.
+
+template(name="dispatchTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Dispatch Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  | Dispatch
+               .panel-body
+                  #accordion.panel-group
+                     each unAssignedTasks
+                        .panel.panel-info
+                           .panel-heading
+                              h4.panel-title
+                                 a(class = "collapseTask" data-toggle="collapse", data-parent="#accordion", href="##{_id}")
+                                    | #{id} ,
+                                    lable.text-danger #{serverity}
+                                    |,
+                                    lable.text-success Due: #{dueDate}
+                           div(id = _id).panel-collapse.collapse
+                              .panel-body
+                                 +detailDispatchingTask
+
+
+template(name="detailDispatchingTask")
+   //.row
+      //.col-lg-12
+   .panel.panel-default
+      .panel-body
+         .row
+            .col-lg-6
+               button.btn.btn-primary(type="button") Dispatch
+         .row
+            fieldset(disabled="")
+               form
+                  .form-group
+                     each Task
+                        .col-lg-6
+                           label Task Id
+                           input.form-control(type="text", name="taskId", value='#{id}')
+                           label Repair part
+                           input.form-control(type="text", name="repairPart", value='#{repairPart}')
+                           label Due Date
+                           input.form-control(type="date", name='taskDuedate', value='#{dueDate}')
+                           label Address
+                           textarea.form-control(rows="3", name="custAddr")
+                              | #{custAddr}
+                           label Status
+                           input.form-control(type="text", name='status', value='#{status}')
+                        .col-lg-6
+                           label Customer
+                           input.form-control(type="text", name="customer", value='#{customer}')
+                           label Contact No
+                           input.form-control(type="text", name="custContact", value='#{custContact}')
+                           label Serverity
+                           select.form-control(name="serverity")
+                              option #{serverity}
+                           label Task Description
+                           textarea.form-control(rows="3", name="taskDesc")
+                              | #{desc}
+                           label Entry Date
+                           input.form-control(type="date", name="entryDate", value='#{entryDate}')
