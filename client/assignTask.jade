@@ -1,0 +1,51 @@
+//Created by cranabahu on 12/14/14.
+
+template(name="assignTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Assign Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  | Assign
+               .panel-body
+                  .row
+                     fieldset(disabled="")
+                        form
+                           .form-group
+                              each task
+                                 .col-lg-6
+                                    label Task Id
+                                    input.form-control(type="text", name="taskId", value='#{id}')
+                                    label Repair part
+                                    input.form-control(type="text", name="repairPart", value='#{repairPart}')
+                                 .col-lg-6
+                                    label Customer
+                                    input.form-control(type="text", name="customer", value='#{customer}')
+                                    label Status
+                                    input.form-control(type="text", name='status', value='#{status}')
+      +assignee
+
+template(name="assignee")
+   .row
+      .col-lg-12
+         h3.page-header Available Agents
+   .row
+      .col-lg-12
+         .panel.panel-default
+            .panel-heading
+               | Assign
+            .panel-body
+               .row
+                  .form-group
+                     each availableEmp
+                        .col-lg-2
+                           label Emp NO
+                           input.form-control(type="text", name="empNo", value='#{empNo}')
+                        .col-lg-2
+                           label Name
+                           input.form-control(type="text", name="empNo", value='#{name}')
+                        .col-lg-2
+                           a.btn.btn-primary.dispatch(type="button", href="/task/assignTask") Assign

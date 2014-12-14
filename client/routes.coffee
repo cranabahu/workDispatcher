@@ -4,6 +4,7 @@ navRoutes = [
   new NavRoute('newTask','', {parentName: 'task', label: 'New Task'})
   new NavRoute('viewTask','',{parentName: 'task', label: 'View Task'})
   new NavRoute('dispatchTask','',{parentName: 'task', label: 'Dispatch Task'})
+  new NavRoute('assignTask','',{parentName: 'task', label: 'Assign Task'})
   new NavRoute('employee', 'fa-edit')
   new NavRoute('registerEmp', '', {parentName: 'employee', label: 'New Employee'})
   #new NavRoute('charts', 'fa-bar-chart-o')
