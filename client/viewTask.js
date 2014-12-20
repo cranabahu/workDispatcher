@@ -7,9 +7,9 @@ Template.viewTask.helpers({
    },
 
    'selectedClass':function(){
-       var taskId = this._id;
+       var taskObjId = this._id;
        var selectedTaskobjId = Session.get('taskObjId');
-       if (taskId === selectedTaskobjId) {
+       if (taskObjId === selectedTaskobjId) {
            return "selected"
        }
    }

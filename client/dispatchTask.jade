@@ -17,7 +17,7 @@ template(name="dispatchTask")
                            .panel-heading
                               h4.panel-title
                                  a(class = "collapseTask" data-toggle="collapse", data-parent="#accordion", href="##{_id}")
-                                    | #{id} ,
+                                    | #{taskId} ,
                                     lable.text-danger #{serverity}
                                     |,
                                     lable.text-success Due: #{dueDate}
@@ -34,7 +34,7 @@ template(name="dispatchTask")
                                                 .form-group
                                                    .col-lg-6
                                                       label Task Id
-                                                      input.form-control(type="text", name="taskId", value='#{id}')
+                                                      input.form-control(type="text", name="taskId", value='#{taskId}')
                                                       label Repair part
                                                       input.form-control(type="text", name="repairPart", value='#{repairPart}')
                                                       label Due Date

@@ -20,7 +20,7 @@ Meteor.methods({
         }
 
         TaskList.insert({
-            id: taskId,
+            taskId: taskId,
             customer: customerVar,
             custAddr: custAddrVar,
             lat: custLat,

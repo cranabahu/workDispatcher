@@ -18,7 +18,8 @@ Template.registerEmp.events({
         var empIsM = Session.get("MaleChecked");
         var empIsF = Session.get("FemaleChecked");
         var empGenderVar = empIsF == true? "Female" : "Male";
-        Meteor.call('insertEmployee',empNameVar,empAgeVar,empGenderVar);
+        var empHomeTownVar = event.target.empHomeTown.value;
+        Meteor.call('insertEmployee',empNameVar,empAgeVar,empGenderVar,empHomeTownVar);
         event.target.empName.value = null;
         event.target.empAge.value = null;
         //event.target.cbMale.removeAttribute('checked');

@@ -7,7 +7,7 @@ Meteor.publish('theEmployees',function(){
 });
 
 Meteor.methods({
-    'insertEmployee':function(empNameVar,empAgeVar,empGenderVar){
+    'insertEmployee':function(empNameVar, empAgeVar, empGenderVar, empHomeTownVar){
         var userIdvar = Meteor.userId();
         var enteredDateVar = new Date();
         var empNoVar = 4100;
@@ -21,6 +21,7 @@ Meteor.methods({
             name: empNameVar,
             age: empAgeVar,
             gender: empGenderVar,
+            location: empHomeTownVar,
             entryDate: enteredDateVar,
             createdBy: userIdvar
         });

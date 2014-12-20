@@ -18,7 +18,7 @@ template(name="assignTask")
                               each task
                                  .col-lg-6
                                     label Task Id
-                                    input.form-control(type="text", name="taskId", value='#{id}')
+                                    input.form-control(type="text", name="taskId", value='#{taskId}')
                                     label Repair part
                                     input.form-control(type="text", name="repairPart", value='#{repairPart}')
                                  .col-lg-6
@@ -38,14 +38,17 @@ template(name="assignee")
             .panel-heading
                | Assign
             .panel-body
-               .row
-                  .form-group
-                     each availableEmp
-                        .col-lg-2
-                           label Emp NO
-                           input.form-control(type="text", name="empNo", value='#{empNo}')
-                        .col-lg-2
-                           label Name
-                           input.form-control(type="text", name="empNo", value='#{name}')
-                        .col-lg-2
-                           a.btn.btn-primary.dispatch(type="button", href="/task/assignTask") Assign
+               .table-responsive
+                  table.table.table-striped.table-bordered.table-hover
+                     thead
+                        tr
+                           th Emp NO
+                           th Name
+                           th Last working place
+                     tbody
+                        each availableEmp
+                           tr.odd.gradeX
+                              td #{empNo}
+                              td #{name}
+                              td #{location}
+               a.btn.btn-primary.dispatch(type="button", href="/task/assignTask") Assign

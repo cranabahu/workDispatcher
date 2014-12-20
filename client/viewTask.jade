@@ -20,13 +20,13 @@ template(name="viewTask")
                            tr
                               th Task Id
                               th Cusomer
-                              td Serverity
+                              th Serverity
                               th Repair Part
                               th Due Date
                         tbody
                            each newTask
                               tr.odd.gradeX
-                                 td(class="newTask {{selectedClass}}") #{id}
+                                 td(class="newTask {{selectedClass}}") #{taskId}
                                  td #{customer}
                                  td #{serverity}
                                  td #{repairPart}

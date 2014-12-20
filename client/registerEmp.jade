@@ -28,6 +28,8 @@ template(name="registerEmp")
                                  label
                                     input(type="checkbox", class="cbFemale")
                                     | Female
+                              label Home town
+                              input.form-control(type="text", name="empHomeTown")
                            button.btn.btn-success(type="submit") Save
                            button.btn.btn-default(type="reset") Reset
       div(name="empDetail")
@@ -46,7 +48,7 @@ template(name="registerEmp")
                               tr
                                  th Emp NO
                                  th Name
-                                 td Age
+                                 th Age
                                  th Gender
                            tbody
                               each employee

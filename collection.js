@@ -4,3 +4,4 @@
 
 EmployeeList = new Mongo.Collection('employees');
 TaskList = new Mongo.Collection('task');
+TaskDispatchList = new Mongo.Collection('task_dispatch');

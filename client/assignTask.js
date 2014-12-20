@@ -11,6 +11,12 @@ Template.assignTask.helpers({
 
 Template.assignee.helpers({
     'availableEmp': function (){
-        return EmployeeList.find();
+        var empList = EmployeeList.find();
+        var taskAssigneeList = TaskDispatchList.find();
+        if (taskAssigneeList.count() > 0) {
+           return empList = EmployeeList.find({empNo: {$nin: taskAssigneeList.empNo}});
+        }
+        distanceMatrix.calculateDistances();
+        return empList;
     }
 });
