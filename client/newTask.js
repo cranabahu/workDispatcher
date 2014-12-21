@@ -20,8 +20,11 @@ Template.newTask.events({
         var serverityVar = event.target.serverity.value;
         var taskDuedateVar = event.target.taskDuedate.value;
         var taskDescVar = event.target.taskDesc.value;
-        var custLat = Session.get("custLat");
-        var custLng = Session.get("custLng");
+        var custLat = Session.get("Lat");
+        var custLng = Session.get("Lng");
+        Session.set("Lat",'');
+        Session.set("Lng",'');
+
         Meteor.call('newTask',customerVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng,function(error,result){
             if (error){
                 console.log(error.result);
@@ -35,6 +38,7 @@ Template.newTask.events({
                 event.target.serverity.value = null;
                 event.target.taskDuedate.value = null;
                 event.target.taskDesc.value = null;
+                gmap.clearMapDiv();
             }
         });
     },
@@ -42,11 +46,11 @@ Template.newTask.events({
     'click .custContact':function(){
         console.log('onClick for cust Contact');
         if(document.getElementById("addr").value !== "") {
-            gmap.initialize();
-            gmap.codeAddress();
+            //gmap.initialize();
+            gmap.codeAddress(document.getElementById("addr").value);
         }else{
-            Session.set('custLat',"");
-            Session.set('custLng',"");
+            Session.set('Lat',"");
+            Session.set('Lng',"");
         }
     }
 });

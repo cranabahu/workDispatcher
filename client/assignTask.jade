@@ -21,6 +21,9 @@ template(name="assignTask")
                                     input.form-control(type="text", name="taskId", value='#{taskId}')
                                     label Repair part
                                     input.form-control(type="text", name="repairPart", value='#{repairPart}')
+                                    label Address
+                                    textarea.form-control(rows="3", name="custAddr")
+                                       | #{custAddr}
                                  .col-lg-6
                                     label Customer
                                     input.form-control(type="text", name="customer", value='#{customer}')
@@ -39,7 +42,7 @@ template(name="assignee")
                | Assign
             .panel-body
                .table-responsive
-                  table.table.table-striped.table-bordered.table-hover
+                  table.table.table-bordered.table-hover
                      thead
                         tr
                            th Emp NO
@@ -47,8 +50,14 @@ template(name="assignee")
                            th Last working place
                      tbody
                         each availableEmp
-                           tr.odd.gradeX
+                           tr(class='selectedRow #{selectedAssignee}')
                               td #{empNo}
                               td #{name}
                               td #{location}
-               a.btn.btn-primary.dispatch(type="button", href="/task/assignTask") Assign
+               a.btn.btn-primary.dispatch(type="button") Assign
+   .row
+      .col-lg-4
+         if error
+            .alert.alert-danger.alert-dismissable
+               button.close(type="button", data-dismiss="alert", aria-hidden="true") &#215;
+               | #{error}

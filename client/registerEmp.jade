@@ -21,6 +21,8 @@ template(name="registerEmp")
                               input.form-control(type="text", name="empName")
                               label Age
                               input.form-control(type="number", name="empAge")
+                              label Address
+                              textarea.form-control(rows="3", name="empAddr", id="addr")
                               .checkbox
                                  label
                                     input(type="checkbox", class="cbMale")
@@ -28,10 +30,12 @@ template(name="registerEmp")
                                  label
                                     input(type="checkbox", class="cbFemale")
                                     | Female
-                              label Home town
-                              input.form-control(type="text", name="empHomeTown")
                            button.btn.btn-success(type="submit") Save
                            button.btn.btn-default(type="reset") Reset
+                     .row
+                        .col-lg-6
+                           #map-canvas
+
       div(name="empDetail")
          .row
             .col-lg-12
