@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-iron:router
 less
 coffeescript
 linto:fontawesome
@@ -15,4 +14,7 @@ accounts-password
 accounts-ui
 momentjs:moment
 underscore
+http
+cfs:http-methods
+iron:router
 

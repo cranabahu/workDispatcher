@@ -64,14 +64,20 @@ class NavRouteList
       Router.route(r.name, r)
     # set catch all route
     Router.route('not-found', {path: '/*', template: notFoundTemplate})
-    Router.onRun(@getOnRun(@redirects))
+    #Router.onRun(@getOnRun(@redirects))
 
   getOnRun: (redirects) ->
+    console.log('getOnRun')
     onRun = () ->
       for r in redirects
+        console.log(r)
+        console.log(@path)
         if @path in r.from
+          console.log(r.from)
           Router.go(r.to)
         else
+          console.log('session setting')
+          console.log(@route.name)
           Session.set('active', @route.name)
     return onRun
 

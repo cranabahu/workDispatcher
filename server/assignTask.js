@@ -35,5 +35,31 @@ Meteor.methods({
             {taskId:taskIdVar},
             {$set:{status:'Dispatched'}}
         );
+
+        var userTask = {data:
+                            {
+                                id:dispatchId,
+                                taskId: taskIdVar,
+                                empNo: empNoVar,
+                                name: empNameVar,
+                                startTime: "",
+                                dueDate: dueDateVar,
+                                estimatedTime: 0,
+                                completionTime:0,
+                                location:locationVar,
+                                lat:latVar,
+                                lon:lonVar,
+                                status:'Dispatched'
+                            }
+                        };
+
+        HTTP.call("PUT", 'http://localhost:3100/api/newTask', userTask, function(error, result){
+            if(result){
+                console.log(result.content);
+            }
+            if(error){
+                console.error(error);
+            }
+        });
     }
 });
