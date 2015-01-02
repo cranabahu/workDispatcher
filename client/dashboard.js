@@ -2,6 +2,8 @@
  * Created by cranabahu on 11/30/14.
  */
 
+Meteor.subscribe('NotificationList');
+
 Template.dashboard.helpers({
     'noOfFreeEmp': function () {
         var taskAssigneeList = _.pluck(TaskDispatchList.find({status: {$nin: ['Accepted','Dispatched']}}).fetch(),'empNo');
@@ -28,5 +30,9 @@ Template.dashboard.helpers({
     },
     'noOfAcceptedTask':function(){
         return TaskList.find({status:'Accepted'}).count();
+    },
+
+    'notification': function () {
+        return NotificationList.find({},{sort: {notifyId: -1}});
     }
 });

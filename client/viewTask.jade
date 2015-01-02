@@ -63,14 +63,8 @@ template(name="viewDispatchedTask")
                            span.caret
                         ul.dropdown-menu.pull-right(role="menu")
                            li
-                              a(href="#") Action
-                           li
-                              a(href="#") Another action
-                           li
-                              a(href="#") Something else here
-                           li.divider
-                           li
-                              a(href="#") Separated link
+                              a(class="viewLink")
+                                 i.i.fa.fa-bars.fa-fw &nbsp;  View
                // /.panel-heading
                .panel-body
                   .table-responsive
@@ -94,6 +88,7 @@ template(name="viewDispatchedTask")
                                  td #{empNo}
                                  td #{name}
                                  td #{dueDate}
+                     label(style="color:red", id="lblInfo")
 
 template(name="viewAcceptedTask")
    #page-wrapper
@@ -113,14 +108,8 @@ template(name="viewAcceptedTask")
                            span.caret
                         ul.dropdown-menu.pull-right(role="menu")
                            li
-                              a(href="#") Action
-                           li
-                              a(href="#") Another action
-                           li
-                              a(href="#") Something else here
-                           li.divider
-                           li
-                              a(href="#") Separated link
+                              a(class="editLink")
+                                 i.fa.fa-bars.fa-fw &nbsp;  View
                // /.panel-heading
                .panel-body
                   .table-responsive
@@ -137,8 +126,57 @@ template(name="viewAcceptedTask")
                            each task
                               tr(class="acceptedTask {{selectedClass}}")
                                  td #{taskId}
-                                 td #{assignee}
+                                 td #{name}
                                  td #{customer}
-                                 td #{serverity}
+                                 td #{severity}
                                  td #{repairPart}
                                  td #{dueDate}
+                     label(style="color:red", id="lblInfo")
+
+template(name="viewDetailTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Detail Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  i.fa.fa-tasks.fa-fw
+                  label(style="color:green;font-size:150%") Detail
+               .panel-body
+                  .row
+                     .col-lg-6
+                        form(id="frmViewTask")
+                           .form-group
+                              each task
+                                 p(style="color:orange;font-size:150%")
+                                    label Task Information
+                                 label Task Id
+                                 input.form-control(readonly, type="text", name="taskId", value='#{taskId}')
+                                 label Repair part
+                                 input.form-control.repairPart(readonly, type="text", name="repairPart", value='#{repairPart}')
+                                 label Serverity
+                                 select.form-control(readonly, name="serverity",select= '#{severity}')
+                                    option Normal
+                                    option High
+                                    option Critical
+                                 label Due Date
+                                 input.form-control(readonly, type="date", name='taskDuedate', value='#{dueDate}')
+                                 label Task Description
+                                 textarea.form-control(readonly, rows="3", name="taskDesc")
+                                    |#{desc}
+                                 p(style="color:orange;font-size:150%")
+                                    label Customer Information
+                                 label Customer
+                                 input.form-control(readonly, required, type="text", name="customer", value='#{customer}')
+                                 label Address
+                                 textarea.form-control(readonly, rows="3", name="custFullAddr", id="fullAddr")
+                                    |#{custFullAddr}
+                                 label Town
+                                 textarea.form-control(readonly, rows="1", name="custAddr", id="addr")
+                                    |#{location}
+                                 label Contact No
+                                 span.custContact
+                                    input.form-control(readonly, type="text", name="custContact", value='#{contact}')
+                           button.btn.btn-success Attachments

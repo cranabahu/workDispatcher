@@ -30,6 +30,8 @@ Router.route('/api/accept/:taskId',function(){
             {$set:{status:'Accepted'}}
         )
     ));
+    var desc = "Task "+this.params.taskId+" Accepted.";
+    Meteor.call('notify',desc,'fa-thumb-tack');
 }, {where: 'server'});
 
 Router.route('/api/complete/:taskId',function(){
@@ -48,6 +50,8 @@ Router.route('/api/complete/:taskId',function(){
             {$set:{status:'Completed'}}
         )
     ));
+    var desc = "Task "+this.params.taskId+" Completed.";
+    Meteor.call('notify',desc,'fa-check');
 }, {where: 'server'});
 
 Router.route('/api/update/task/:taskId',function(){
@@ -61,6 +65,8 @@ Router.route('/api/update/task/:taskId',function(){
             {$set:this.request.body}
         )
     ));
+    var desc = "Task "+this.params.taskId+" updated by emp.";
+    Meteor.call('notify',desc,'fa-pencil-square-o');
 }, {where: 'server'});
 
 Router.route('/api/insert/pic',function(){
@@ -71,4 +77,6 @@ Router.route('/api/insert/pic',function(){
     this.response.end(JSON.stringify(
         PictureList.insert(this.request.body)
     ));
+    var desc = "Pictures added "+this.request.body.taskId;
+    Meteor.call('notify',desc,'fa-camera');
 }, {where: 'server'});

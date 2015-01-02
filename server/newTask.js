@@ -15,7 +15,7 @@ Meteor.methods({
         var taskStatus = "New";
         var taskId   = 10001;
         if (TaskList.find().count() >  0) {
-            var maxTaskCursor = TaskList.findOne({}, {sort: {id: -1}});
+            var maxTaskCursor = TaskList.findOne({}, {sort: {taskId: -1}});
             taskId = maxTaskCursor.taskId + 1;
         }
         TaskList.insert({
@@ -36,8 +36,9 @@ Meteor.methods({
             entryDate: enteredDateVar,
             createdBy: userIdvar
         });
-
-        return "Task "+taskId+" Created.";
+        var desc = "Task "+taskId+" Created.";
+        Meteor.call('notify',desc,'fa-wrench');
+        return desc;
     },
 
     'editTask':function(taskIdvar,customerVar,custFullAddrVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
@@ -59,6 +60,9 @@ Meteor.methods({
             }
         });
 
+        var desc = "Task "+taskIdvar+" Edited.";
+        Meteor.call('notify',desc,'fa-wrench');
+
         return "Task Updated.";
     },
 
@@ -67,6 +71,8 @@ Meteor.methods({
         //var task = TaskList.find({taskId: taskId}).fetch();
         //console.log(taskIdVar);
         TaskList.remove({taskId: taskIdVar});
+        var desc = "Task "+taskIdvar+" Deleted.";
+        Meteor.call('notify',desc,'fa-trash');
     }
 });
 

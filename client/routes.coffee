@@ -21,7 +21,10 @@ navRouteList = new NavRouteList(navRoutes)
 
 Session.set('navRoots', navRouteList.rootNavRoutes)
 
+#Router.route('/', ()-> this.render('dashboard'));
 Router.route('/', ()-> this.render('dashboard'));
 Router.route('/task/assignTask',()->this.render('assignTask'));
 Router.route('/task/EditTask',()->this.render('EditTask'));
 Router.route('/employee/EditEmp',()->this.render('editEmp'));
+Router.route('/task/viewDetailTask',()->this.render('viewDetailTask'));
+Router.route('/task/viewDetailTask/photo',()->this.render('photo'));

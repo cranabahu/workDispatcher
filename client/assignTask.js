@@ -116,6 +116,7 @@ Template.assignee.events({
                 assignee.name,                
                 task.dueDate,
                 task.custAddr,
+                task.custFullAddr,
                 task.lat,
                 task.lng,
                 task.desc,

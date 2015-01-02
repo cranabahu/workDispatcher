@@ -6,3 +6,4 @@ EmployeeList = new Mongo.Collection('employees');
 TaskList = new Mongo.Collection('task');
 TaskDispatchList = new Mongo.Collection('task_dispatch');
 PictureList = new Mongo.Collection('pictures');
+NotificationList = new Mongo.Collection('wdNotification');

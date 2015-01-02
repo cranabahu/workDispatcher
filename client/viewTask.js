@@ -85,5 +85,30 @@ Template.viewAcceptedTask.events({
     'click .acceptedTask': function() {
         var taskObjId = this.taskId;
         Session.set('acceptedTaskObjId',taskObjId);
+    },
+
+    'click .editLink': function () {
+        var acceptedTaskObjId = Session.get('acceptedTaskObjId');
+        if(acceptedTaskObjId){
+            Session.set('viewTaskId',acceptedTaskObjId);
+            Router.go('/task/viewDetailTask');
+        }else{
+            document.getElementById("lblInfo").innerHTML = 'Please select a task';
+        }
+    }
+});
+
+//###########################################################################
+Template.viewDetailTask.helpers({
+    'task': function () {
+        var taskIdVar = Session.get('viewTaskId');
+        return TaskDispatchList.find({taskId: taskIdVar});
+    }
+});
+
+Template.viewDetailTask.events({
+    'click .btn': function (events) {
+        events.preventDefault();
+        Router.go('/task/viewDetailTask/photo');
     }
 });

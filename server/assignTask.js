@@ -7,7 +7,7 @@ Meteor.publish('TaskDispatchList',function(){
 });
 
 Meteor.methods({
-    'newDispatch':function(taskIdVar,partVar,customerVar,custContactVar,empNoVar,empNameVar,dueDateVar,locationVar, latVar, lonVar,taskDescVar,severityVar,tempNumber){
+    'newDispatch':function(taskIdVar,partVar,customerVar,custContactVar,empNoVar,empNameVar,dueDateVar,locationVar,custFullAddr, latVar, lonVar,taskDescVar,severityVar,tempNumber){
         var startTimeVar = "";
 
         var dispatchId = 0;
@@ -29,6 +29,7 @@ Meteor.methods({
             estimatedTime: 0,
             completionTime:0,
             location:locationVar,
+            custFullAddr:custFullAddr,
             lat:latVar,
             lng:lonVar,
             status:'Dispatched',
@@ -55,6 +56,7 @@ Meteor.methods({
                                 estimatedTime: 0,
                                 completionTime:0,
                                 location:locationVar,
+                                custFullAddr:custFullAddr,
                                 lat:latVar,
                                 lng:lonVar,
                                 status:'Dispatched',
@@ -71,5 +73,7 @@ Meteor.methods({
                 console.error(error);
             }
         });
+        var desc = 'Task '+ empNoVar +' dispatched to'+empNameVar;
+        Meteor.call('notify',desc,'fa-paper-plane');
     }
 });

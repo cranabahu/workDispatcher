@@ -29,7 +29,8 @@ Meteor.methods({
             entryDate: enteredDateVar,
             createdBy: userIdvar
         });
-
+        var desc = 'EmpNo '+ empNoVar +' created';
+        Meteor.call('notify',desc,'fa-user');
         return 'EmpNo '+ empNoVar +' created';
     },
 
@@ -46,9 +47,13 @@ Meteor.methods({
                 lng: empLngVar
             }
         });
+        var desc = 'EmpNo '+ empNoVar +' updated';
+        Meteor.call('notify',desc,'fa-user');
     },
 
     'deleteEmp': function (empNoVar) {
         EmployeeList.remove({empNo:empNoVar});
+        var desc = 'EmpNo '+ empNoVar +' deleted';
+        Meteor.call('notify',desc,'fa-user');
     }
 });
