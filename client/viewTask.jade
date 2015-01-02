@@ -1,6 +1,6 @@
 //Created by cranabahu on 11/30/14.
 
-template(name="viewTask")
+template(name="viewNewTask")
    #page-wrapper
       .row
          .col-lg-12
@@ -9,13 +9,25 @@ template(name="viewTask")
          .col-lg-12
             .panel.panel-default
                .panel-heading
-                  button.btn.btn-primary.btn-circle(type="")
-                     i.fa.fa-list
-                  | Task Details
+                  i.fa.fa-tasks.fa-fw
+                  label(style="color:green;font-size:150%") &nbsp; Task Details
+                  .pull-right
+                     .btn-group
+                        button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
+                           | Actions
+                           span.caret
+                        ul.dropdown-menu.pull-right(role="menu")
+                           li
+                              a(class="editLink")
+                                 i.i.fa.fa-pencil.fa-fw &nbsp;  Edit
+                           li.divider
+                           li
+                              a(class="deleteLink")
+                                 i.fa.fa-trash-o.fa-fw &nbsp;  Delete
                // /.panel-heading
                .panel-body
                   .table-responsive
-                     table.table.table-striped.table-bordered.table-hover
+                     table.table.table-bordered.table-hover
                         thead
                            tr
                               th Task Id
@@ -24,9 +36,108 @@ template(name="viewTask")
                               th Repair Part
                               th Due Date
                         tbody
-                           each newTask
-                              tr.odd.gradeX
-                                 td(class="newTask {{selectedClass}}") #{taskId}
+                           each task
+                              tr(class="newTask {{selectedClass}}")
+                                 td #{taskId}
+                                 td #{customer}
+                                 td #{serverity}
+                                 td #{repairPart}
+                                 td #{dueDate}
+                  label(style="color:red", id="lblInfo")
+
+template(name="viewDispatchedTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Dispatched Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  i.fa.fa-tasks.fa-fw
+                  label(style="color:green;font-size:150%") &nbsp; Task Details
+                  .pull-right
+                     .btn-group
+                        button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
+                           | Actions
+                           span.caret
+                        ul.dropdown-menu.pull-right(role="menu")
+                           li
+                              a(href="#") Action
+                           li
+                              a(href="#") Another action
+                           li
+                              a(href="#") Something else here
+                           li.divider
+                           li
+                              a(href="#") Separated link
+               // /.panel-heading
+               .panel-body
+                  .table-responsive
+                     table.table.table-bordered.table-hover
+                        thead
+                           tr
+                              th Task Id
+                              th Cusomer
+                              th Serverity
+                              th Repair Part
+                              th Assignee Id
+                              th Assignee Name
+                              th Due Date
+                        tbody
+                           each task
+                              tr(class="dispatchedTask {{selectedClass}}")
+                                 td #{taskId}
+                                 td #{customer}
+                                 td #{serverity}
+                                 td #{repairPart}
+                                 td #{empNo}
+                                 td #{name}
+                                 td #{dueDate}
+
+template(name="viewAcceptedTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Accepted Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  i.fa.fa-tasks.fa-fw
+                  label(style="color:green;font-size:150%") &nbsp;  Task Details
+                  .pull-right
+                     .btn-group
+                        button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
+                           | Actions
+                           span.caret
+                        ul.dropdown-menu.pull-right(role="menu")
+                           li
+                              a(href="#") Action
+                           li
+                              a(href="#") Another action
+                           li
+                              a(href="#") Something else here
+                           li.divider
+                           li
+                              a(href="#") Separated link
+               // /.panel-heading
+               .panel-body
+                  .table-responsive
+                     table.table.table-bordered.table-hover
+                        thead
+                           tr
+                              th Task Id
+                              th Assignee
+                              th Cusomer
+                              th Serverity
+                              th Repair Part
+                              th Due Date
+                        tbody
+                           each task
+                              tr(class="acceptedTask {{selectedClass}}")
+                                 td #{taskId}
+                                 td #{assignee}
                                  td #{customer}
                                  td #{serverity}
                                  td #{repairPart}

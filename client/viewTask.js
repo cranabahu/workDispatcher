@@ -1,23 +1,89 @@
 /**
  * Created by cranabahu on 11/30/14.
  */
-Template.viewTask.helpers({
-   'newTask':function(){
-       return TaskList.find({ assignee : ''});
+Template.viewNewTask.helpers({
+   'task':function(){
+       return TaskList.find({ status : 'New'});
    },
 
    'selectedClass':function(){
-       var taskObjId = this._id;
-       var selectedTaskobjId = Session.get('taskObjId');
+       var taskObjId = this.taskId;
+       var selectedTaskobjId = Session.get('newTaskObjId');
        if (taskObjId === selectedTaskobjId) {
            return "selected"
        }
    }
 });
 
-Template.viewTask.events({
+Template.viewNewTask.events({
     'click .newTask': function() {
-        var taskObjId = this._id;
-       Session.set('taskObjId',taskObjId);
+        var taskObjId = this.taskId;
+        Session.set('newTaskObjId',taskObjId);
+        document.getElementById("lblInfo").innerHTML = '';
+    },
+    'click .editLink': function () {
+        var selectedTaskId = Session.get('newTaskObjId');
+        if(selectedTaskId){
+            Session.set('editTaskId',selectedTaskId);
+            Router.go('/task/EditTask');
+        }else{
+            document.getElementById("lblInfo").innerHTML = 'Please select a task';
+        }
+    },
+
+    'click .deleteLink': function () {
+        var selectedTaskId = Session.get('newTaskObjId');
+        if(selectedTaskId){
+            Meteor.call('deleteTask',selectedTaskId);
+            document.getElementById("lblInfo").innerHTML = 'Task '+selectedTaskId+' deleted.';
+        }else{
+            document.getElementById("lblInfo").innerHTML = 'Please select a task';
+        }
+    }
+});
+
+//#######################################################################
+
+Template.viewDispatchedTask.helpers({
+    'task':function(){
+        return TaskDispatchList.find({ status : 'Dispatched'});
+    },
+
+    'selectedClass':function(){
+        var taskObjId = this.taskId;
+        var selectedTaskobjId = Session.get('dispatchedTaskObjId');
+        if (taskObjId === selectedTaskobjId) {
+            return "selected"
+        }
+    }
+});
+
+Template.viewDispatchedTask.events({
+    'click .dispatchedTask': function() {
+        var taskObjId = this.taskId;
+        Session.set('dispatchedTaskObjId',taskObjId);
+    }
+});
+
+//#######################################################################
+
+Template.viewAcceptedTask.helpers({
+    'task':function(){
+        return TaskDispatchList.find({ status : 'Accepted'});
+    },
+
+    'selectedClass':function(){
+        var taskObjId = this.taskId;
+        var selectedTaskobjId = Session.get('acceptedTaskObjId');
+        if (taskObjId === selectedTaskobjId) {
+            return "selected"
+        }
+    }
+});
+
+Template.viewAcceptedTask.events({
+    'click .acceptedTask': function() {
+        var taskObjId = this.taskId;
+        Session.set('acceptedTaskObjId',taskObjId);
     }
 });

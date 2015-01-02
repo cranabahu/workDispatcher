@@ -9,7 +9,9 @@ template(name="assignTask")
          .col-lg-12
             .panel.panel-default
                .panel-heading
-                  | Assign
+                  button.btn.btn-primary.btn-circle(type="")
+                     i.fa.fa-bolt
+                  label(style="color:green;font-size:150%")  Assign
                .panel-body
                   .row
                      fieldset(disabled="")
@@ -21,14 +23,15 @@ template(name="assignTask")
                                     input.form-control(type="text", name="taskId", value='#{taskId}')
                                     label Repair part
                                     input.form-control(type="text", name="repairPart", value='#{repairPart}')
-                                    label Address
-                                    textarea.form-control(rows="3", name="custAddr")
-                                       | #{custAddr}
+                                    label Town
+                                    input.form-control(type="text", name="customer", value='#{custAddr}')
                                  .col-lg-6
                                     label Customer
                                     input.form-control(type="text", name="customer", value='#{customer}')
                                     label Status
                                     input.form-control(type="text", name='status', value='#{status}')
+                                    label Contact
+                                    input.form-control(type="text", name='status', value='#{contact}')
       +assignee
 
 template(name="assignee")
@@ -39,7 +42,9 @@ template(name="assignee")
       .col-lg-12
          .panel.panel-default
             .panel-heading
-               | Assign
+               button.btn.btn-primary.btn-circle(type="")
+                  i.fa.fa-list
+               label(style="color:green;font-size:150%")  Assignees
             .panel-body
                .table-responsive
                   table.table.table-bordered.table-hover
@@ -47,13 +52,17 @@ template(name="assignee")
                         tr
                            th Emp NO
                            th Name
-                           th Last working place
+                           th Location
+                           th Dispatched Task
+                           th Accepted Task
                      tbody
                         each availableEmp
                            tr(class='selectedRow #{selectedAssignee}')
                               td #{empNo}
                               td #{name}
                               td #{location}
+                              td #{dispatchTaskCount}
+                              td #{acceptedTaskCount}
                a.btn.btn-primary.dispatch(type="button") Assign
    .row
       .col-lg-4

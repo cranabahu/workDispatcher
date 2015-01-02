@@ -11,31 +11,39 @@ template(name="registerEmp")
                .panel-heading
                   button.btn.btn-success.btn-circle(type="")
                      i.fa.fa-link
-                  | Register
+                  label(style="color:green;font-size:150%") Register
                .panel-body
                   .row
                      .col-lg-6
-                        form
+                        form(id="empRegForm" data-parsley-validate)
                            .form-group
+                              p(style="color:orange;font-size:150%")
+                                 label Basic Information
                               label Name
-                              input.form-control(type="text", name="empName")
+                              input.form-control(type="text", name="empFullName", required)
                               label Age
-                              input.form-control(type="number", name="empAge")
+                              input.form-control(type="number", name="empAge", required)
                               label Address
-                              textarea.form-control(rows="3", name="empAddr", id="addr")
+                              textarea.form-control(rows="3", name="empAddr", id="addr", required)
                               .checkbox
                                  label
-                                    input(type="checkbox", class="cbMale")
+                                    input(id="cbMale" type="checkbox", class="cbMale", required)
                                     | Male
                                  label
-                                    input(type="checkbox", class="cbFemale")
+                                    input(id="cbFemale" type="checkbox", class="cbFemale")
                                     | Female
+                              label Contact
+                              input.form-control.empContactVar(type="text", name="empContact", required)
+                              p(style="color:orange;font-size:150%")
+                                 label Login Information
+                              label user Id
+                              input.form-control(type="text", name="empName", required)
                            button.btn.btn-success(type="submit") Save
                            button.btn.btn-default(type="reset") Reset
+                        p.text-success #{empInsertInfo}
                      .row
                         .col-lg-6
                            #map-canvas
-
       div(name="empDetail")
          .row
             .col-lg-12
@@ -43,7 +51,7 @@ template(name="registerEmp")
                   .panel-heading
                      button.btn.btn-primary.btn-circle(type="")
                         i.fa.fa-list
-                     | Employee Details
+                     label(style="color:green;font-size:150%") Employee Details
                   // /.panel-heading
                   .panel-body
                      .table-responsive
@@ -51,6 +59,7 @@ template(name="registerEmp")
                            thead
                               tr
                                  th Emp NO
+                                 th user Id
                                  th Name
                                  th Age
                                  th Gender
@@ -59,5 +68,100 @@ template(name="registerEmp")
                                  tr.odd.gradeX
                                     td #{empNo}
                                     td #{name}
+                                    td #{fullName}
                                     td #{age}
                                     td #{gender}
+
+template(name="viewEmp")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Employees
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  button.btn.btn-primary.btn-circle(type="")
+                     i.fa.fa-list
+                  label(style="color:green;font-size:150%") &nbsp; Details
+                  .pull-right
+                     .btn-group
+                        button.btn.btn-default.btn-xs.dropdown-toggle(type="button", data-toggle="dropdown")
+                           | Actions
+                           span.caret
+                        ul.dropdown-menu.pull-right(role="menu")
+                           li
+                              a(class="editLink")
+                                 i.i.fa.fa-pencil.fa-fw &nbsp;  Edit
+                           li.divider
+                           li
+                              a(class="deleteLink")
+                                 i.fa.fa-trash-o.fa-fw &nbsp;  Delete
+               // /.panel-heading
+               .panel-body
+                  .table-responsive
+                     table.table.table-bordered.table-hover
+                        thead
+                           tr
+                              th Emp NO
+                              th user Id
+                              th Name
+                              th Contact
+                              th Home town
+                              th Age
+                              th Gender
+                        tbody
+                           each employee
+                              tr(class="empRow {{selectedClass}}")
+                                 td #{empNo}
+                                 td #{name}
+                                 td #{fullName}
+                                 td #{contact}
+                                 td #{location}
+                                 td #{age}
+                                 td #{gender}
+                  label(style="color:red", id="lblInfo")
+
+template(name="editEmp")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Edite Employee
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  button.btn.btn-success.btn-circle(type="")
+                     i.fa.fa-link
+                  label(style="color:green;font-size:150%") Edit
+               .panel-body
+                  .row
+                     .col-lg-6
+                        form(id="empEditForm" data-parsley-validate)
+                           .form-group
+                              each employee
+                                 p(style="color:orange;font-size:150%")
+                                    label Basic Information
+                                 label Emp No
+                                 input.form-control(readonly, type="text", name="empNO", required, value='#{empNo}')
+                                 label Name
+                                 input.form-control.empFullName(type="text", name="empFullName", required, value='#{fullName}')
+                                 label Age
+                                 input.form-control(type="number", name="empAge", required, value='#{age}')
+                                 label Address
+                                 textarea.form-control(rows="3", name="empAddr", id="addr", required)
+                                    |#{location}
+                                 label Contact
+                                 input.form-control.empContact(type="text", name="empContact", required, value='#{contact}')
+                                 label Gender
+                                 input.form-control(readonly, type="text", value='#{gender}')
+                                 p(style="color:orange;font-size:150%")
+                                    label Login Information
+                                 label user Id
+                                 input.form-control(readonly,type="text", name="empName" ,required, value='#{name}')
+                           button.btn.btn-success(type="submit") Save
+                        p.text-success #{empUpdatedInfo}
+                     .row
+                        .col-lg-6
+                           button.btn-info.gMap Load Map
+                           #map-canvas

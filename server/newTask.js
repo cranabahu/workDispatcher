@@ -7,21 +7,21 @@ Meteor.publish('theTask',function(){
 });
 
 Meteor.methods({
-    'newTask':function(customerVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
+    'newTask':function(customerVar,custFullAddrVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
         var userIdvar = Meteor.userId();
         var enteredDateVar = moment(new Date()).format('YYYY-MM-DD');
         var assigneeVar = "";
         var estimationVar = 0;
         var taskStatus = "New";
         var taskId   = 10001;
-        if (TaskList.find().count() !==  0) {
+        if (TaskList.find().count() >  0) {
             var maxTaskCursor = TaskList.findOne({}, {sort: {id: -1}});
-            taskId = maxTaskCursor.id + 1;
+            taskId = maxTaskCursor.taskId + 1;
         }
-
         TaskList.insert({
             taskId: taskId,
             customer: customerVar,
+            custFullAddr: custFullAddrVar,
             custAddr: custAddrVar,
             lat: custLat,
             lng: custLng,
@@ -38,5 +38,35 @@ Meteor.methods({
         });
 
         return "Task "+taskId+" Created.";
+    },
+
+    'editTask':function(taskIdvar,customerVar,custFullAddrVar,custAddrVar,custContactVar,repairPartVar,serverityVar,taskDuedateVar,taskDescVar,custLat,custLng){
+        var userIdvar = Meteor.userId();
+        var enteredDateVar = moment(new Date()).format('YYYY-MM-DD');
+        console.log(taskIdvar);
+        TaskList.update({taskId:taskIdvar},
+            {$set: {
+                custFullAddr: custFullAddrVar,
+                custAddr: custAddrVar,
+                lat: custLat,
+                lng: custLng,
+                custContact: custContactVar,
+                repairPart: repairPartVar,
+                desc: taskDescVar,
+                serverity: serverityVar,
+                dueDate: taskDuedateVar,
+                createdBy: userIdvar
+            }
+        });
+
+        return "Task Updated.";
+    },
+
+    'deleteTask': function (taskIdVar) {
+        //console.log(taskId);
+        //var task = TaskList.find({taskId: taskId}).fetch();
+        //console.log(taskIdVar);
+        TaskList.remove({taskId: taskIdVar});
     }
 });
+

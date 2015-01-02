@@ -9,7 +9,9 @@ template(name="dispatchTask")
          .col-lg-12
             .panel.panel-default
                .panel-heading
-                  | Dispatch
+                  button.btn.btn-primary.btn-circle(type="")
+                     i.fa.fa-bolt
+                  label(style="color:green;font-size:150%") Dispatch
                .panel-body
                   #accordion.panel-group
                      each unAssignedTasks
@@ -27,7 +29,8 @@ template(name="dispatchTask")
                                     .panel-body
                                        .row
                                           .col-lg-6
-                                             a.btn.btn-primary.dispatch(type="button", href="/task/assignTask") Dispatch
+                                             a.btn.btn-primary.dispatch(type="button", href="/task/assignTask")
+                                                i. Dispatch
                                        .row
                                           fieldset(disabled="")
                                              form

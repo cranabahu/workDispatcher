@@ -8,35 +8,98 @@ template(name="newTask")
          .col-lg-12
             .panel.panel-default
                .panel-heading
-                  | Create
+                  button.btn.btn-primary.btn-circle(type="")
+                     i.fa.fa-twitch
+                  label(style="color:green;font-size:150%")  Create
                .panel-body
                   .row
                      .col-lg-6
-                        form
+                        form(id="frmNewTask" data-parsley-validate)
                            .form-group
-                              //label Task Id
-                              //input.form-control(type="text", name="taskId")
-                              label Customer
-                              input.form-control(required = isRequired, type="text", name="customer")
-                              label Address
-                              textarea.form-control(rows="3", name="custAddr", id="addr")
-                              label Contact No
-                              span.custContact
-                                 input.form-control(type="text", name="custContact")
+                              p(style="color:orange;font-size:150%")
+                                 label Task Information
                               label Repair part
-                              input.form-control(type="text", name="repairPart")
+                              input.form-control.repairPart(required, type="text", name="repairPart")
                               label Serverity
-                              select.form-control(name="serverity")
+                              select.form-control(required, name="serverity")
                                  option Normal
                                  option High
                                  option Critical
                               label Due Date
-                              input.form-control(type="date", name='taskDuedate')
+                              input.form-control(required, type="date", name='taskDuedate')
                               label Task Description
-                              textarea.form-control(rows="3", name="taskDesc")
-                           button.btn.btn-default(type="submit") Save
+                              textarea.form-control(required, rows="3", name="taskDesc")
+                              p(style="color:orange;font-size:150%")
+                                 label Customer Information
+                              //label Task Id
+                              //input.form-control(type="text", name="taskId")
+                              label Customer
+                              input.form-control(required, type="text", name="customer" req)
+                              label Address
+                              textarea.form-control(required, rows="3", name="custFullAddr", id="fullAddr")
+                              label Town
+                              textarea.form-control(required, rows="1", name="custAddr", id="addr")
+                              label Contact No
+                              span.custContact
+                                 input.form-control(required, type="text", name="custContact")
+                           button.btn.btn-success(type="submit") Save
                            button.btn.btn-default(type="reset") Reset
                         p.text-success #{taskInfo}
                      .row
                         .col-lg-6
                            #map-canvas
+
+
+//Created by cranabahu on 11/28/14.
+template(name="EditTask")
+   #page-wrapper
+      .row
+         .col-lg-12
+            h1.page-header Edit Task
+      .row
+         .col-lg-12
+            .panel.panel-default
+               .panel-heading
+                  label(style="color:green;font-size:150%") Edit
+               .panel-body
+                  .row
+                     .col-lg-6
+                        form(id="frmEditTask" data-parsley-validate)
+                           .form-group
+                              each task
+                                 p(style="color:orange;font-size:150%")
+                                    label Task Information
+                                 label Task Id
+                                 input.form-control(readonly, required, type="text", name="taskId", value='#{taskId}')
+                                 label Repair part
+                                 input.form-control.repairPart(required, type="text", name="repairPart", value='#{repairPart}')
+                                 label Serverity
+                                 select.form-control(required, name="serverity",select= '#{serverity}')
+                                    option Normal
+                                    option High
+                                    option Critical
+                                 label Due Date
+                                 input.form-control(required, type="date", name='taskDuedate', value='#{dueDate}')
+                                 label Task Description
+                                 textarea.form-control(required, rows="3", name="taskDesc")
+                                    |#{desc}
+                                 p(style="color:orange;font-size:150%")
+                                    label Customer Information
+                                 label Customer
+                                 input.form-control(readonly, required, type="text", name="customer", value='#{customer}')
+                                 label Address
+                                 textarea.form-control(required, rows="3", name="custFullAddr", id="fullAddr")
+                                    |#{custFullAddr}
+                                 label Town
+                                 textarea.form-control(required, rows="1", name="custAddr", id="addr")
+                                    |#{custAddr}
+                                 label Contact No
+                                 span.custContact
+                                    input.form-control(required, type="text", name="custContact", value='#{custContact}')
+                           button.btn.btn-success(type="submit") Save
+                        p.text-success #{taskUpdatedInfo}
+                     .row
+                        .col-lg-6
+                           button.btn-info.gMap Load Map
+                           #map-canvas
+

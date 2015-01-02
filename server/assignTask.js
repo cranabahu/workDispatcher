@@ -7,7 +7,7 @@ Meteor.publish('TaskDispatchList',function(){
 });
 
 Meteor.methods({
-    'newDispatch':function(taskIdVar,empNoVar,empNameVar,dueDateVar,locationVar, latVar, lonVar,tempNumber){
+    'newDispatch':function(taskIdVar,partVar,customerVar,custContactVar,empNoVar,empNameVar,dueDateVar,locationVar, latVar, lonVar,taskDescVar,severityVar,tempNumber){
         var startTimeVar = "";
 
         var dispatchId = 0;
@@ -19,6 +19,9 @@ Meteor.methods({
         TaskDispatchList.insert({
             id:dispatchId,
             taskId: taskIdVar,
+            repairPart: partVar,
+            customer: customerVar,
+            contact: custContactVar,
             empNo: empNoVar,
             name: empNameVar,
             startTime: "",
@@ -27,19 +30,24 @@ Meteor.methods({
             completionTime:0,
             location:locationVar,
             lat:latVar,
-            lon:lonVar,
-            status:'Dispatched'
+            lng:lonVar,
+            status:'Dispatched',
+            desc: taskDescVar,
+            severity: severityVar
         });
 
         TaskList.update(
             {taskId:taskIdVar},
-            {$set:{status:'Dispatched'}}
+            {$set:{status:'Dispatched',assignee:empNoVar}}
         );
 
         var userTask = {data:
                             {
                                 id:dispatchId,
                                 taskId: taskIdVar,
+                                repairPart: partVar,
+                                customer: customerVar,
+                                contact: custContactVar,
                                 empNo: empNoVar,
                                 name: empNameVar,
                                 startTime: "",
@@ -48,8 +56,10 @@ Meteor.methods({
                                 completionTime:0,
                                 location:locationVar,
                                 lat:latVar,
-                                lon:lonVar,
-                                status:'Dispatched'
+                                lng:lonVar,
+                                status:'Dispatched',
+                                desc: taskDescVar,
+                                severity: severityVar
                             }
                         };
 

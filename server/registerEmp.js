@@ -7,7 +7,7 @@ Meteor.publish('theEmployees',function(){
 });
 
 Meteor.methods({
-    'insertEmployee':function(empNameVar, empAgeVar, empGenderVar, empHomeTownVar,empLatVar,empLngVar){
+    'insertEmployee':function(empFullNameVar,empNameVar, empAgeVar, empGenderVar, empHomeTownVar,empContactVar,empLatVar,empLngVar){
         var userIdvar = Meteor.userId();
         var enteredDateVar = new Date();
         var empNoVar = 4100;
@@ -17,9 +17,11 @@ Meteor.methods({
         }
 
         EmployeeList.insert({
+            fullName:empFullNameVar,
             empNo: empNoVar,
             name: empNameVar,
             age: empAgeVar,
+            contact: empContactVar,
             gender: empGenderVar,
             location: empHomeTownVar,
             lat: empLatVar,
@@ -27,5 +29,26 @@ Meteor.methods({
             entryDate: enteredDateVar,
             createdBy: userIdvar
         });
+
+        return 'EmpNo '+ empNoVar +' created';
+    },
+
+    'updateEmp':function(empNoVar,empFullNameVar, empAgeVar, empGenderVar, empHomeTownVar,empContactVar,empLatVar,empLngVar){
+
+        EmployeeList.update({empNo:empNoVar},
+            {$set: {
+                fullName: empFullNameVar,
+                age: empAgeVar,
+                contact: empContactVar,
+                gender: empGenderVar,
+                location: empHomeTownVar,
+                lat: empLatVar,
+                lng: empLngVar
+            }
+        });
+    },
+
+    'deleteEmp': function (empNoVar) {
+        EmployeeList.remove({empNo:empNoVar});
     }
 });
